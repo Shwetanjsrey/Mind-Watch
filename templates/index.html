@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindWatch AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+
+    <div class="app-shell">
+
+        <nav class="top-nav">
+            <div class="nav-brand">MindWatch</div>
+
+            <div class="nav-links">
+                <a href="/" class="active">Home</a>
+                <a href="/about">About</a>
+            </div>
+        </nav>
+
+        <header class="hero">
+            <div class="badge">AI Mental Health Monitoring</div>
+
+            <h1>MindWatch</h1>
+
+            <p>
+                AI-powered severe risk detection, emotional analysis,
+                explainability, and emotional trend intelligence.
+            </p>
+        </header>
+
+        <main class="main-grid">
+
+            <section class="card input-card">
+                <h2>Analyze Social Media Post</h2>
+
+                <form method="POST">
+                    <textarea
+                        name="text"
+                        placeholder="Paste a social media post here..."
+                        required
+                    >{{ input_text if input_text else '' }}</textarea>
+
+                    <button type="submit">Analyze with AI</button>
+                </form>
+            </section>
+
+            {% if analysis %}
+            <section class="card result-card">
+
+                <div class="risk-header">
+                    <div
+                        class="risk-pill {{ analysis.risk_level.lower() }}"
+                    >
+                        <span class="risk-dot"></span>
+                        {{ analysis.risk_level }} RISK
+                    </div>
+
+                    <div class="confidence-wrap">
+                        <span class="confidence-pill">
+                            Confidence: {{ analysis.confidence }}%
+                        </span>
+
+                        {% if analysis.uncertain %}
+                        <span class="warning-pill">
+                            ⚠ Low confidence
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="score-card">
+                    <div class="score-number">
+                        {{ analysis.risk_score }}
+                        <span>/100</span>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div
+                            class="progress-fill"
+                            style="
+                                width: {{ analysis.risk_score }}%;
+                                background: {{ analysis.risk_color }};
+                            "
+                        ></div>
+                    </div>
+
+                    <div class="formula-box">
+                        Score combines:
+                        AI severe probability + risk signal intensity +
+                        negative emotional load.
+
+                        Found
+                        <strong>{{ analysis.high_count }}</strong>
+                        high-risk signal(s)
+                        and
+                        <strong>{{ analysis.medium_count }}</strong>
+                        medium-risk signal(s).
+                    </div>
+                </div>
+
+                <div class="prob-section">
+                    <h3>Class Probabilities</h3>
+
+                    <div class="prob-row">
+                        <span>LOW</span>
+                        <div class="prob-track">
+                            <div
+                                class="prob-fill low"
+                                style="width: {{ analysis.low_probability }}%;"
+                            ></div>
+                        </div>
+                        <span>{{ analysis.low_probability }}%</span>
+                    </div>
+
+                    <div class="prob-row">
+                        <span>MED</span>
+                        <div class="prob-track">
+                            <div
+                                class="prob-fill med"
+                                style="width: {{ analysis.medium_probability }}%;"
+                            ></div>
+                        </div>
+                        <span>{{ analysis.medium_probability }}%</span>
+                    </div>
+
+                    <div class="prob-row">
+                        <span>HIGH</span>
+                        <div class="prob-track">
+                            <div
+                                class="prob-fill high"
+                                style="width: {{ analysis.high_probability }}%;"
+                            ></div>
+                        </div>
+                        <span>{{ analysis.high_probability }}%</span>
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <h3>Emotion Analysis</h3>
+
+                    <div class="emotion-grid">
+                        {% for emotion, score in analysis.emotions.items() %}
+                        <div class="emotion-box">
+                            <span class="emotion-name">
+                                {{ emotion }}
+                            </span>
+
+                            <span class="emotion-score">
+                                {{ (score * 100)|round(1) }}%
+                            </span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <h3>Risk Signal Tokens</h3>
+
+                    <div class="keyword-wrap">
+
+                        {% for token in analysis.high_tokens %}
+                        <span class="keyword-chip high-chip">
+                            {{ token }}
+                        </span>
+                        {% endfor %}
+
+                        {% for token in analysis.medium_tokens %}
+                        <span class="keyword-chip med-chip">
+                            {{ token }}
+                        </span>
+                        {% endfor %}
+
+                        {% if not analysis.high_tokens and not analysis.medium_tokens %}
+                        <span class="no-match">
+                            No risk keywords matched
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <h3>Highlighted Text</h3>
+
+                    <div class="highlight-box">
+                        {{ analysis.highlighted_text|safe }}
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <h3>Recommended Actions</h3>
+
+                    <ul class="action-list">
+                        {% for action in analysis.actions %}
+                        <li>{{ action }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="stats-strip">
+                    <div class="stat-card">
+                        <div class="stat-value">
+                            {{ analysis.word_count }}
+                        </div>
+                        <div class="stat-label">
+                            Words
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-value">
+                            {{ analysis.high_count }}
+                        </div>
+                        <div class="stat-label">
+                            High Signals
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-value">
+                            {{ analysis.medium_count }}
+                        </div>
+                        <div class="stat-label">
+                            Medium Signals
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            {% endif %}
+
+        </main>
+    </div>
+</body>
+</html>
