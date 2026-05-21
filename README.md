@@ -1,165 +1,107 @@
 <div align="center">
 
-# 🧠 MindWatch
+# MindWatch
+### AI-Powered Mental Health Risk Detection Through Social Media Intelligence
 
-### *AI-Powered Mental Health Risk Detection Through Social Media Intelligence*
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
-  <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" />
-  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" />
-  <img src="https://img.shields.io/badge/HuggingFace-FFD21E?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Transformers-NLP-blueviolet?style=for-the-badge" />
-</p>
-
----
-
-### Detecting psychological distress with transformer-based AI, emotional intelligence, and explainable analytics.
+*Understanding emotional distress through modern AI, transformer-based NLP, and explainable mental health analytics.*
 
 </div>
 
 ---
 
-# The Problem
+## The Problem
 
-Mental health struggles often remain unnoticed until they become severe.
+Mental health struggles often remain invisible until they reach critical stages.
 
-People frequently express emotional distress, hopelessness, burnout, anxiety, and psychological pain online—sometimes long before seeking professional help.
+People express stress, hopelessness, emotional exhaustion, and psychological distress online every day—sometimes long before seeking professional help.
 
-Traditional assessment methods depend heavily on interviews, questionnaires, and clinical observation. While valuable, they are expensive, time-consuming, and not suited for continuous large-scale monitoring.
+Traditional assessment methods rely heavily on clinical observation, interviews, and questionnaires. While valuable, they are often expensive, time-consuming, and not designed for continuous monitoring.
 
-This raises an important question:
+As social media becomes a space for emotional expression, a new question emerges:
 
-> ### Can artificial intelligence help identify warning signs of mental distress earlier?
+> **Can artificial intelligence help identify warning signs of mental distress earlier?**
 
-That question led to the creation of **MindWatch**.
-
----
-
-# What is MindWatch?
-
-MindWatch is an AI-powered web platform designed to analyze social media text and detect signs of psychological distress, emotional instability, and severe mental health risk.
-
-Rather than acting as a black-box classifier, MindWatch combines multiple AI components to provide interpretable, explainable, and actionable analysis.
-
-It does not simply produce a prediction.
-
-It helps explain **why** that prediction was made.
+MindWatch was built to explore that possibility.
 
 ---
 
-# Product Preview
+## What is MindWatch?
 
-## Landing Experience
+MindWatch is an AI-powered mental health risk detection platform that analyzes social media text to identify signs of severe psychological distress, emotional instability, and risk patterns.
 
-<p align="center">
-  <img src="screenshots/home.png" width="1000"/>
-</p>
+Rather than functioning as a black-box classifier, the system combines multiple AI components to provide interpretable and transparent results.
 
----
+MindWatch does not simply label text.
 
-## AI Risk Analysis Dashboard
-
-<p align="center">
-  <img src="screenshots/analysis.png" width="1000"/>
-</p>
+It explains *why.*
 
 ---
 
-## Detailed Risk Assessment Output
+## How It Works
 
-<p align="center">
-  <img src="screenshots/result.png" width="1000"/>
-</p>
+MindWatch follows a multi-stage AI analysis pipeline.
 
----
-
-# How MindWatch Works
-
-MindWatch follows a hybrid AI analysis pipeline.
-
----
-
-## 1. Text Understanding
-
+### 1. Text Understanding
 The user submits a social media post or text sample.
 
-The system preprocesses the content through:
-
-- text cleaning
-- normalization
-- token preparation
-- input formatting
-
-This prepares the text for transformer-based analysis.
+The system preprocesses the content by cleaning, normalizing, and preparing it for transformer-based analysis.
 
 ---
 
-## 2. Emotion Intelligence
+### 2. Emotion Intelligence
+Using **GoEmotions**, the system identifies fine-grained emotional signals such as:
 
-MindWatch uses **GoEmotions**, a transformer-based emotion classification model, to detect fine-grained emotional states.
+- Sadness
+- Fear
+- Disappointment
+- Gratitude
+- Joy
+- Anxiety
+- Admiration
+- Emotional distress indicators
+
+This helps establish the emotional context behind the text.
+
+---
+
+### 3. Severe Risk Detection
+A **DeBERTa-based transformer classifier** evaluates whether the text contains severe mental health risk indicators.
+
+This component was trained specifically for high-risk detection.
+
+---
+
+### 4. Risk Signal Extraction
+The system also examines explicit linguistic warning signs through keyword and phrase detection.
 
 Examples include:
-
-- sadness
-- disappointment
-- fear
-- confusion
-- gratitude
-- joy
-- admiration
-- emotional distress indicators
-
-This helps understand the emotional context behind the message.
-
----
-
-## 3. Severe Risk Detection
-
-A **DeBERTa-based transformer model** evaluates whether the input contains severe psychological risk indicators.
-
-This model serves as the primary AI risk detector.
-
----
-
-## 4. Risk Signal Extraction
-
-MindWatch also detects explicit linguistic warning signs using phrase and keyword analysis.
-
-Examples:
 
 - hopeless
 - want to die
 - ending it
 - worthless
-- depressed
 - exhausted
-- no point
+- depressed
 
-This creates an interpretable risk evidence layer.
+This creates an additional interpretable risk layer.
 
 ---
 
-## 5. Hybrid Risk Fusion
-
-The final assessment combines:
+### 5. Hybrid Risk Fusion
+MindWatch combines:
 
 - transformer prediction
 - emotional indicators
 - explicit risk signals
 - confidence estimation
 
-to classify the overall risk level.
-
-<div align="center">
+to classify the overall mental health risk into:
 
 # LOW • MEDIUM • HIGH
 
-</div>
-
 ---
 
-# System Architecture
+## Architecture
 
 ```text
 User Input
@@ -178,73 +120,91 @@ Risk Classification
    ↓
 Explainability Layer
    ↓
-Interactive Dashboard Output
+Interactive Dashboard
 ```
 
 ---
 
-# Why This Matters
+## Why This Matters
 
-Mental health AI systems often suffer from a major weakness:
+AI systems in mental health often suffer from a major problem:
 
-## Lack of transparency
+**lack of transparency.**
 
 A prediction without explanation is difficult to trust.
 
-MindWatch addresses this through explainable AI techniques, confidence estimation, emotional reasoning, and highlighted risk indicators.
+MindWatch addresses this by integrating explainable AI mechanisms that highlight influential signals and provide reasoning alongside classification.
 
-The goal is not only classification.
+The goal is not just prediction.
 
-The goal is **understanding**.
-
----
-
-# Core Features
-
-✨ Severe Mental Health Risk Detection  
-🎭 Fine-Grained Emotion Analysis  
-🧠 Explainable AI Reasoning  
-📊 LOW / MEDIUM / HIGH Classification  
-🎯 Confidence Score Estimation  
-🚨 Risk Signal Detection  
-📝 Highlighted Risk Text Analysis  
-💡 Actionable Guidance Output  
-🌐 Interactive Modern Flask Dashboard  
+The goal is **understanding.**
 
 ---
 
-# Technology Stack
+## Key Features
 
-| Layer | Technology |
-|------|------------|
-| Backend | Flask |
-| Language | Python |
-| Deep Learning | PyTorch |
-| NLP Framework | Hugging Face Transformers |
-| Risk Detection | DeBERTa |
-| Emotion Analysis | GoEmotions |
-| Explainability | SHAP |
-| Frontend | HTML, CSS, JavaScript |
-| Data Processing | Pandas, NumPy |
-| Visualization | Matplotlib |
+- Severe psychological risk detection
+- Fine-grained emotion analysis
+- Explainable AI reasoning
+- Confidence scoring
+- Risk signal highlighting
+- LOW / MEDIUM / HIGH classification
+- Interactive Flask dashboard
+- Modern visualization interface
 
 ---
 
-# Performance
+## Performance
 
 The severe-risk detection model achieved:
 
 | Metric | Score |
 |--------|-------|
-| Accuracy | **90.65%** |
-| Macro F1 Score | **75.76%** |
-| Weighted F1 Score | **88.38%** |
+| Accuracy | 90.65% |
+| Macro F1 Score | 75.76% |
+| Weighted F1 Score | 88.38% |
 
 ---
 
-# Running MindWatch
+## Technology Stack
 
-Clone repository:
+MindWatch was built using:
+
+- Python
+- Flask
+- PyTorch
+- Hugging Face Transformers
+- DeBERTa
+- GoEmotions
+- SHAP
+- HTML / CSS / JavaScript
+- Pandas / NumPy
+- Matplotlib
+
+---
+
+## Dashboard Experience
+
+MindWatch provides a modern interactive dashboard featuring:
+
+- emotional analysis visualization
+- confidence metrics
+- highlighted risk indicators
+- risk score breakdown
+- explainable predictions
+- recommended response guidance
+
+_Add screenshots here_
+
+```md
+![Dashboard Preview](screenshots/dashboard.png)
+```
+
+---
+
+## Running MindWatch
+
+Clone the repository:
 
 ```bash
 git clone https://github.com/InvisZero/Mind-Watch.git
@@ -257,7 +217,7 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Run application:
+Run the app:
 
 ```bash
 python app.py
@@ -271,36 +231,7 @@ http://127.0.0.1:5000
 
 ---
 
-# Project Structure
-
-```bash
-Mind-Watch/
-│
-├── app.py
-├── requirements.txt
-├── README.md
-│
-├── src/
-│   ├── risk_engine.py
-│   ├── emotion_analyzer.py
-│   ├── explain_prediction.py
-│   └── ...
-│
-├── templates/
-│   ├── index.html
-│   └── about.html
-│
-├── static/
-│   └── style.css
-│
-├── data/
-│
-└── screenshots/
-```
-
----
-
-# Future Improvements
+## Future Directions
 
 MindWatch can be extended with:
 
@@ -309,12 +240,14 @@ MindWatch can be extended with:
 - user-level emotional trend tracking
 - mobile deployment
 - cloud hosting
-- enhanced explainability modules
+- advanced explainability layers
 
 ---
 
-# Disclaimer
+## Final Note
 
-MindWatch is a research-focused AI application.
+MindWatch is a research-driven AI project exploring how artificial intelligence can support mental health monitoring through interpretable NLP systems.
 
-It is not a medical diagnostic tool and should not replace professional mental health consultation or emergency intervention.
+It is not intended to replace professional diagnosis or clinical care.
+
+But it demonstrates how modern AI can move toward earlier awareness, transparency, and accessible digital support.
